@@ -1,16 +1,15 @@
-// Docs on event and context https://docs.netlify.com/functions/build/#code-your-function-2
-// import nodemailer from 'nodemailer';
+
 const nodemailer = require('nodemailer')
 
 const transport = nodemailer.createTransport({
-  // service: 'gmail',
-  host:'smtp.gmail.com',
-  port:'465',
-  service:'gmail',
+
+  host: process.env.HOST,
+  port:process.env.PORT,
+  service:process.env.SERVICE,
   secure: true,
   auth: {
-      user: 'alenaavni1999@gmail.com',
-      pass: 'jtsgagtbwwcfende',
+      user: process.env.USER_EMAIL,
+      pass: process.env.USER_PASS,
   },
   
 });
@@ -18,8 +17,8 @@ const transport = nodemailer.createTransport({
 const handler = async (event) => {
   const { email, subject, text } = JSON.parse(event.body);
   const mailOptions = {
-      from: "alenaavni1999@gmail.com",
-      to: "khanshab9343@gmail.com",
+      from: process.env.USER_EMAIL,
+      to: email,
       subject: subject,
       text: text,
   };
