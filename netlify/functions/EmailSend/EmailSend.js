@@ -16,6 +16,8 @@ const transport = nodemailer.createTransport({
 
 const handler = async (event) => {
   const { email, subject, text } = JSON.parse(event.body);
+  console.log("emaillll",event.body)
+  console.log("check",email, subject, text)
   const mailOptions = {
       from: process.env.USER_EMAIL,
       to: email,
