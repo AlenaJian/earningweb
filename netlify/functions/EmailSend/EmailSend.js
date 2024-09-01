@@ -42,26 +42,16 @@ const handler = async (event) => {
   };
 
   try {
-       transport.sendMail(mailOptions).then(()=>{
-        return {
-            statusCode: 200,
-             headers: {
-                  "Access-Control-Allow-Origin": "*",
-              },
-            body: JSON.stringify({
-                message: 'Email sent successfully',
-            }),
-        };
-       }).catch((Err)=>{
-        console.log('error', Err);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({
-                message: 'Please try after sometime',
-            }),
-        };
-       });
-     
+      await transport.sendMail(mailOptions);
+      return {
+          statusCode: 200,
+           headers: {
+                "Access-Control-Allow-Origin": "*",
+            },
+          body: JSON.stringify({
+              message: 'Email sent successfully',
+          }),
+      };
   } catch (err) {
       console.log('error', err);
       return {
