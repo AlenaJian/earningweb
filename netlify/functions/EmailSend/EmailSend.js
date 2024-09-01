@@ -53,7 +53,7 @@ const handler = async (event) => {
             }),
         };
        }).catch((Err)=>{
-        console.log('error', err);
+        console.log('error', Err);
         return {
             statusCode: 500,
             body: JSON.stringify({
